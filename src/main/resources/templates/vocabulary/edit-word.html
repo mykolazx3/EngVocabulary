@@ -1,0 +1,401 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Edit-word</title>
+
+    <link type="text/css" href="/css/index.css" rel="stylesheet"/>
+    <!--preview-->
+    <link type="text/css" href="/static/css/index.css" rel="stylesheet"/>
+</head>
+
+<body>
+<table class="engvocabulary-table">
+    <thead>
+    <tr>
+        <td>
+            <form th:method="POST" th:action="@{/vocabulary/new-set}">
+                <input type="submit" value="Create Set"/>
+            </form>
+        </td>
+        <td></td>
+        <td> Noun <br> Pronoun</td>
+        <td> Gerund</td>
+        <td> Adjective</td>
+        <td> Adverb <br> Preposition <br> Conjunction</td>
+        <td> Infinitive</td>
+        <td> Past Simple</td>
+        <td> Participle 2</td>
+        <td> Participle 1</td>
+    </tr>
+    </thead>
+
+    <tbody>
+    <div th:each="wordsRowsSet : ${wordsRowsSets}">
+
+        <tr>
+            <td>
+                <form th:method="DELETE" th:action="@{/vocabulary/{id}/delete-set(id=${wordsRowsSet.getId()})}">
+                    <input type="submit" value="Delete Set"/>
+                </form>
+                <form th:method="POST" th:action="@{/vocabulary/{id}/new-row(id=${wordsRowsSet.getId()})}">
+                    <input type="submit" value="Create Row"/>
+                </form>
+            </td>
+
+            <div th:each="wordsRow : ${wordsRowsSet.getWordsRows()}">
+                <div th:if="${wordsRow == wordsRowsSet.getWordsRows.get(0)}">
+
+                    <form th:method="PATCH" th:action="@{/vocabulary/{id}/edit-word(id=${wordsRowToEdit.getId()})}"
+                          th:object="${wordsRowToEdit}">
+
+                        <td>
+
+                            <div th:if="${wordsRow.getId() == id}">
+                                <input type="submit" value="Edit"/>
+                            </div>
+
+                        </td>
+                        <td>
+
+                            <div th:if="${type == 'nounPronoun'} AND ${wordsRow.getId() == id}">
+                                <input type="text" th:field="*{nounPronoun}"/>
+                                <br/>
+                                <input type="text" th:field="*{nounPronounTranslate}"/>
+                            </div>
+
+                            <div th:unless="${type == 'nounPronoun'} AND ${wordsRow.getId() == id}">
+                                <a th:href="${'/vocabulary/' + {wordsRow.getId()} + '/edit-word/' + 'nounPronoun'}"
+                                   th:text="${wordsRow.getNounPronoun()}">
+                                </a>
+                            </div>
+
+                        </td>
+                        <td>
+
+                            <div th:if="${type == 'gerund'} AND ${wordsRow.getId() == id}">
+                                <input type="text" th:field="*{gerund}"/>
+                                <br/>
+                                <input type="text" th:field="*{gerundTranslate}"/>
+                            </div>
+
+                            <div th:unless="${type == 'gerund'} AND ${wordsRow.getId() == id}">
+                                <a th:href="${'/vocabulary/' + {wordsRow.getId()} + '/edit-word/' + 'gerund'}"
+                                   th:text="${wordsRow.getGerund()}">
+                                </a>
+                            </div>
+
+                        </td>
+                        <td>
+
+                            <div th:if="${type == 'adjective'} AND ${wordsRow.getId() == id}">
+                                <input type="text" th:field="*{adjective}"/>
+                                <br/>
+                                <input type="text" th:field="*{adjectiveTranslate}"/>
+                            </div>
+
+                            <div th:unless="${type == 'adjective'} AND ${wordsRow.getId() == id}">
+                                <a th:href="${'/vocabulary/' + {wordsRow.getId()} + '/edit-word/' + 'adjective'}"
+                                   th:text="${wordsRow.getAdjective()}">
+                                </a>
+                            </div>
+
+                        </td>
+                        <td>
+
+                            <div th:if="${type == 'adverbPrepositionConjunction'} AND ${wordsRow.getId() == id}">
+                                <input type="text" th:field="*{adverbPrepositionConjunction}"/>
+                                <br/>
+                                <input type="text" th:field="*{adverbPrepositionConjunctionTranslate}"/>
+                            </div>
+
+                            <div th:unless="${type == 'adverbPrepositionConjunction'} AND ${wordsRow.getId() == id}">
+                                <a th:href="${'/vocabulary/' + {wordsRow.getId()} + '/edit-word/' + 'adverbPrepositionConjunction'}"
+                                   th:text="${wordsRow.getAdverbPrepositionConjunction()}">
+                                </a>
+                            </div>
+
+                        </td>
+                        <td>
+
+                            <div th:if="${type == 'infinitive'} AND ${wordsRow.getId() == id}">
+                                <input type="text" th:field="*{infinitive}"/>
+                                <br/>
+                                <input type="text" th:field="*{infinitiveTranslate}"/>
+                            </div>
+
+                            <div th:unless="${type == 'infinitive'} AND ${wordsRow.getId() == id}">
+                                <a th:href="${'/vocabulary/' + {wordsRow.getId()} + '/edit-word/' + 'infinitive'}"
+                                   th:text="${wordsRow.getInfinitive()}">
+                                </a>
+                            </div>
+
+                        </td>
+                        <td>
+
+                            <dif th:if="${type == 'pastSimple'} AND ${wordsRow.getId() == id}">
+                                <input type="text" th:field="*{pastSimple}"/>
+                                <br/>
+                                <input type="text" th:field="*{pastSimpleTranslate}"/>
+                            </dif>
+
+                            <dif th:unless="${type == 'pastSimple'} AND ${wordsRow.getId() == id}">
+                                <a th:href="${'/vocabulary/' + {wordsRow.getId()} + '/edit-word/' + 'pastSimple'}"
+                                   th:text="${wordsRow.getPastSimple()}">
+                                </a>
+                            </dif>
+
+                        </td>
+                        <td>
+
+                            <div th:if="${type == 'participle2'} AND ${wordsRow.getId() == id}">
+                                <input type="text" th:field="*{participle2}"/>
+                                <br/>
+                                <input type="text" th:field="*{participle2Translate}"/>
+                            </div>
+
+                            <div th:unless="${type == 'participle2'} AND ${wordsRow.getId() == id}">
+                                <a th:href="${'/vocabulary/' + {wordsRow.getId()} + '/edit-word/' + 'participle2'}"
+                                   th:text="${wordsRow.getParticiple2()}">
+                                </a>
+                            </div>
+
+                        </td>
+                        <td>
+
+                            <div th:if="${type == 'participle1'} AND ${wordsRow.getId() == id}">
+                                <input type="text" th:field="*{participle1}"/>
+                                <br/>
+                                <input type="text" th:field="*{participle1Translate}"/>
+                            </div>
+
+                            <div th:unless="${type == 'participle1'} AND ${wordsRow.getId() == id}">
+                                <a th:href="${'/vocabulary/' + {wordsRow.getId()} + '/edit-word/' + 'participle1'}"
+                                   th:text="${wordsRow.getParticiple1()}">
+                                </a>
+                            </div>
+
+                        </td>
+
+                        <div th:unless="${type == 'nounPronoun'}">
+                            <input type="hidden" th:field="*{nounPronoun}"/>
+                            <input type="hidden" th:field="*{nounPronounTranslate}"/>
+                        </div>
+                        <div th:unless="${type == 'gerund'}">
+                            <input type="hidden" th:field="*{gerund}"/>
+                            <input type="hidden" th:field="*{gerundTranslate}"/>
+                        </div>
+                        <div th:unless="${type == 'adjective'}">
+                            <input type="hidden" th:field="*{adjective}"/>
+                            <input type="hidden" th:field="*{adjectiveTranslate}"/>
+                        </div>
+                        <div th:unless="${type == 'adverbPrepositionConjunction'}">
+                            <input type="hidden" th:field="*{adverbPrepositionConjunction}"/>
+                            <input type="hidden" th:field="*{adverbPrepositionConjunctionTranslate}"/>
+                        </div>
+                        <div th:unless="${type == 'infinitive'}">
+                            <input type="hidden" th:field="*{infinitive}"/>
+                            <input type="hidden" th:field="*{infinitiveTranslate}"/>
+                        </div>
+                        <div th:unless="${type == 'pastSimple'}">
+                            <input type="hidden" th:field="*{pastSimple}"/>
+                            <input type="hidden" th:field="*{pastSimpleTranslate}"/>
+                        </div>
+                        <div th:unless="${type == 'participle2'}">
+                            <input type="hidden" th:field="*{participle2}"/>
+                            <input type="hidden" th:field="*{participle2Translate}"/>
+                        </div>
+                        <div th:unless="${type == 'participle1'}">
+                            <input type="hidden" th:field="*{participle1}"/>
+                            <input type="hidden" th:field="*{participle1Translate}"/>
+                        </div>
+
+                    </form>
+
+                </div>
+            </div>
+
+        </tr>
+
+        <div th:each="wordsRow : ${wordsRowsSet.getWordsRows()}">
+            <div th:unless="${wordsRow == wordsRowsSet.getWordsRows.get(0)}">
+                <tr>
+
+                    <form th:method="PATCH" th:action="@{/vocabulary/{id}/edit-word(id=${wordsRowToEdit.getId()})}"
+                          th:object="${wordsRowToEdit}">
+
+                        <td>
+
+                        </td>
+                        <td>
+
+                            <div th:if="${wordsRow.getId() == id}">
+                                <input type="submit" value="Edit"/>
+                            </div>
+
+                        </td>
+                        <td>
+
+                            <div th:if="${type == 'nounPronoun'} AND ${wordsRow.getId() == id}">
+                                <input type="text" th:field="*{nounPronoun}"/>
+                                <br/>
+                                <input type="text" th:field="*{nounPronounTranslate}"/>
+                            </div>
+
+                            <div th:unless="${type == 'nounPronoun'} AND ${wordsRow.getId() == id}">
+                                <a th:href="${'/vocabulary/' + {wordsRow.getId()} + '/edit-word/' + 'nounPronoun'}"
+                                   th:text="${wordsRow.getNounPronoun()}">
+                                </a>
+                            </div>
+
+                        </td>
+                        <td>
+
+                            <div th:if="${type == 'gerund'} AND ${wordsRow.getId() == id}">
+                                <input type="text" th:field="*{gerund}"/>
+                                <br/>
+                                <input type="text" th:field="*{gerundTranslate}"/>
+                            </div>
+
+                            <div th:unless="${type == 'gerund'} AND ${wordsRow.getId() == id}">
+                                <a th:href="${'/vocabulary/' + {wordsRow.getId()} + '/edit-word/' + 'gerund'}"
+                                   th:text="${wordsRow.getGerund()}">
+                                </a>
+                            </div>
+
+                        </td>
+                        <td>
+
+                            <div th:if="${type == 'adjective'} AND ${wordsRow.getId() == id}">
+                                <input type="text" th:field="*{adjective}"/>
+                                <br/>
+                                <input type="text" th:field="*{adjectiveTranslate}"/>
+                            </div>
+
+                            <div th:unless="${type == 'adjective'} AND ${wordsRow.getId() == id}">
+                                <a th:href="${'/vocabulary/' + {wordsRow.getId()} + '/edit-word/' + 'adjective'}"
+                                   th:text="${wordsRow.getAdjective()}">
+                                </a>
+                            </div>
+
+                        </td>
+                        <td>
+
+                            <div th:if="${type == 'adverbPrepositionConjunction'} AND ${wordsRow.getId() == id}">
+                                <input type="text" th:field="*{adverbPrepositionConjunction}"/>
+                                <br/>
+                                <input type="text" th:field="*{adverbPrepositionConjunctionTranslate}"/>
+                            </div>
+
+                            <div th:unless="${type == 'adverbPrepositionConjunction'} AND ${wordsRow.getId() == id}">
+                                <a th:href="${'/vocabulary/' + {wordsRow.getId()} + '/edit-word/' + 'adverbPrepositionConjunction'}"
+                                   th:text="${wordsRow.getAdverbPrepositionConjunction()}">
+                                </a>
+                            </div>
+
+                        </td>
+                        <td>
+
+                            <div th:if="${type == 'infinitive'} AND ${wordsRow.getId() == id}">
+                                <input type="text" th:field="*{infinitive}"/>
+                                <br/>
+                                <input type="text" th:field="*{infinitiveTranslate}"/>
+                            </div>
+
+                            <div th:unless="${type == 'infinitive'} AND ${wordsRow.getId() == id}">
+                                <a th:href="${'/vocabulary/' + {wordsRow.getId()} + '/edit-word/' + 'infinitive'}"
+                                   th:text="${wordsRow.getInfinitive()}">
+                                </a>
+                            </div>
+
+                        </td>
+                        <td>
+
+                            <dif th:if="${type == 'pastSimple'} AND ${wordsRow.getId() == id}">
+                                <input type="text" th:field="*{pastSimple}"/>
+                                <br/>
+                                <input type="text" th:field="*{pastSimpleTranslate}"/>
+                            </dif>
+
+                            <dif th:unless="${type == 'pastSimple'} AND ${wordsRow.getId() == id}">
+                                <a th:href="${'/vocabulary/' + {wordsRow.getId()} + '/edit-word/' + 'pastSimple'}"
+                                   th:text="${wordsRow.getPastSimple()}">
+                                </a>
+                            </dif>
+
+                        </td>
+                        <td>
+
+                            <div th:if="${type == 'participle2'} AND ${wordsRow.getId() == id}">
+                                <input type="text" th:field="*{participle2}"/>
+                                <br/>
+                                <input type="text" th:field="*{participle2Translate}"/>
+                            </div>
+
+                            <div th:unless="${type == 'participle2'} AND ${wordsRow.getId() == id}">
+                                <a th:href="${'/vocabulary/' + {wordsRow.getId()} + '/edit-word/' + 'participle2'}"
+                                   th:text="${wordsRow.getParticiple2()}">
+                                </a>
+                            </div>
+
+                        </td>
+                        <td>
+
+                            <div th:if="${type == 'participle1'} AND ${wordsRow.getId() == id}">
+                                <input type="text" th:field="*{participle1}"/>
+                                <br/>
+                                <input type="text" th:field="*{participle1Translate}"/>
+                            </div>
+
+                            <div th:unless="${type == 'participle1'} AND ${wordsRow.getId() == id}">
+                                <a th:href="${'/vocabulary/' + {wordsRow.getId()} + '/edit-word/' + 'participle1'}"
+                                   th:text="${wordsRow.getParticiple1()}">
+                                </a>
+                            </div>
+
+                        </td>
+
+                        <div th:unless="${type == 'nounPronoun'}">
+                            <input type="hidden" th:field="*{nounPronoun}"/>
+                            <input type="hidden" th:field="*{nounPronounTranslate}"/>
+                        </div>
+                        <div th:unless="${type == 'gerund'}">
+                            <input type="hidden" th:field="*{gerund}"/>
+                            <input type="hidden" th:field="*{gerundTranslate}"/>
+                        </div>
+                        <div th:unless="${type == 'adjective'}">
+                            <input type="hidden" th:field="*{adjective}"/>
+                            <input type="hidden" th:field="*{adjectiveTranslate}"/>
+                        </div>
+                        <div th:unless="${type == 'adverbPrepositionConjunction'}">
+                            <input type="hidden" th:field="*{adverbPrepositionConjunction}"/>
+                            <input type="hidden" th:field="*{adverbPrepositionConjunctionTranslate}"/>
+                        </div>
+                        <div th:unless="${type == 'infinitive'}">
+                            <input type="hidden" th:field="*{infinitive}"/>
+                            <input type="hidden" th:field="*{infinitiveTranslate}"/>
+                        </div>
+                        <div th:unless="${type == 'pastSimple'}">
+                            <input type="hidden" th:field="*{pastSimple}"/>
+                            <input type="hidden" th:field="*{pastSimpleTranslate}"/>
+                        </div>
+                        <div th:unless="${type == 'participle2'}">
+                            <input type="hidden" th:field="*{participle2}"/>
+                            <input type="hidden" th:field="*{participle2Translate}"/>
+                        </div>
+                        <div th:unless="${type == 'participle1'}">
+                            <input type="hidden" th:field="*{participle1}"/>
+                            <input type="hidden" th:field="*{participle1Translate}"/>
+                        </div>
+
+                    </form>
+
+                </tr>
+            </div>
+        </div>
+    </div>
+    </tbody>
+</table>
+
+</body>
+</html>

@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Index</title>
+
+    <link type="text/css" href="/css/index.css" rel="stylesheet"/>
+    <!--preview-->
+    <link type="text/css" href="/static/css/index.css" rel="stylesheet"/>
+</head>
+
+
+<body>
+
+<table class="engvocabulary-table">
+    <thead>
+    <tr>
+        <td>
+            <form th:method="POST" th:action="@{/vocabulary/new-set}">
+                <input type="submit" value="Create Set"/>
+            </form>
+        </td>
+        <td class="td1"></td>
+        <td> Noun <br> Pronoun</td>
+        <td> Gerund</td>
+        <td> Adjective</td>
+        <td> Adverb <br> Preposition <br> Conjunction</td>
+        <td> Infinitive</td>
+        <td> Past Simple</td>
+        <td> Participle 2</td>
+        <td> Participle 1</td>
+    </tr>
+    </thead>
+
+    <tbody>
+    <div th:each="wordsRowsSet : ${wordsRowsSets}">
+        <tr>
+            <td>
+                <form th:method="DELETE" th:action="@{/vocabulary/{id}/delete-set(id=${wordsRowsSet.getId()})}">
+                    <input type="submit" value="Delete Set"/>
+                </form>
+                <form th:method="POST" th:action="@{/vocabulary/{id}/new-row(id=${wordsRowsSet.getId()})}">
+                    <input type="submit" value="Create Row"/>
+                </form>
+            </td>
+            <div th:each="wordsRow : ${wordsRowsSet.getWordsRows()}">
+                <div th:if="${wordsRow == wordsRowsSet.getWordsRows.get(0)}">
+                    <td>
+                        <form th:method="DELETE"
+                              th:action="@{/vocabulary/{id}/delete-row(id=${wordsRow.getId()})}">
+                            <input type="submit" value="Delete Row"/>
+                        </form>
+                    </td>
+                    <td>
+                        <a th:href="${'/vocabulary/' + {wordsRow.getId()} + '/edit-word/' + 'nounPronoun'}"
+                           th:text="${wordsRow.getNounPronoun()}">
+                        </a>
+                    </td>
+                    <td>
+                        <a th:href="${'/vocabulary/' + {wordsRow.getId()} + '/edit-word/' + 'gerund'}"
+                           th:text="${wordsRow.getGerund()}">
+                        </a>
+                    </td>
+                    <td>
+                        <a th:href="${'/vocabulary/' + {wordsRow.getId()} + '/edit-word/' + 'adjective'}"
+                           th:text="${wordsRow.getAdjective()}">
+                    </a>
+                    </td>
+                    <td>
+                        <a th:href="${'/vocabulary/' + {wordsRow.getId()} + '/edit-word/' + 'adverbPrepositionConjunction'}"
+                           th:text="${wordsRow.getAdverbPrepositionConjunction()}">
+                        </a>
+                    </td>
+                    <td>
+                        <a th:href="${'/vocabulary/' + {wordsRow.getId()} + '/edit-word/' + 'infinitive'}"
+                           th:text="${wordsRow.getInfinitive()}">
+                        </a>
+                    </td>
+                    <td>
+                        <a th:href="${'/vocabulary/' + {wordsRow.getId()} + '/edit-word/' + 'pastSimple'}"
+                           th:text="${wordsRow.getPastSimple()}">
+                        </a>
+                    </td>
+                    <td>
+                        <a th:href="${'/vocabulary/' + {wordsRow.getId()} + '/edit-word/' + 'participle2'}"
+                           th:text="${wordsRow.getParticiple2()}">
+                        </a>
+                    </td>
+                    <td>
+                        <a th:href="${'/vocabulary/' + {wordsRow.getId()} + '/edit-word/' + 'participle1'}"
+                           th:text="${wordsRow.getParticiple1()}">
+                        </a>
+                    </td>
+                </div>
+            </div>
+        </tr>
+
+        <div th:each="wordsRow : ${wordsRowsSet.getWordsRows()}">
+            <div th:unless="${wordsRow == wordsRowsSet.getWordsRows.get(0)}">
+                <tr>
+                    <td></td>
+                    <td>
+                        <form th:method="DELETE"
+                              th:action="@{/vocabulary/{id}/delete-row(id=${wordsRow.getId()})}">
+                            <input type="submit" value="Delete Row"/>
+                        </form>
+                    </td>
+                    <td>
+                        <a th:href="${'/vocabulary/' + {wordsRow.getId()} + '/edit-word/' + 'nounPronoun'}"
+                           th:text="${wordsRow.getNounPronoun()}">
+                        </a>
+                    </td>
+                    <td>
+                        <a th:href="${'/vocabulary/' + {wordsRow.getId()} + '/edit-word/' + 'gerund'}"
+                           th:text="${wordsRow.getGerund()}">
+                        </a>
+                    </td>
+                    <td>
+                        <a th:href="${'/vocabulary/' + {wordsRow.getId()} + '/edit-word/' + 'adjective'}"
+                           th:text="${wordsRow.getAdjective()}">
+                        </a>
+                    </td>
+                    <td>
+                        <a th:href="${'/vocabulary/' + {wordsRow.getId()} + '/edit-word/' + 'adverbPrepositionConjunction'}"
+                           th:text="${wordsRow.getAdverbPrepositionConjunction()}">
+                        </a>
+                    </td>
+                    <td>
+                        <a th:href="${'/vocabulary/' + {wordsRow.getId()} + '/edit-word/' + 'infinitive'}"
+                           th:text="${wordsRow.getInfinitive()}">
+                        </a>
+                    </td>
+                    <td>
+                        <a th:href="${'/vocabulary/' + {wordsRow.getId()} + '/edit-word/' + 'pastSimple'}"
+                           th:text="${wordsRow.getPastSimple()}">
+                        </a>
+                    </td>
+                    <td>
+                        <a th:href="${'/vocabulary/' + {wordsRow.getId()} + '/edit-word/' + 'participle2'}"
+                           th:text="${wordsRow.getParticiple2()}">
+                        </a>
+                    </td>
+                    <td>
+                        <a th:href="${'/vocabulary/' + {wordsRow.getId()} + '/edit-word/' + 'participle1'}"
+                           th:text="${wordsRow.getParticiple1()}">
+                        </a>
+                    </td>
+                </tr>
+            </div>
+        </div>
+    </div>
+    </tbody>
+</table>
+
+</body>
+</html>

@@ -1,0 +1,68 @@
+*{
+    margin:0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Roboto', sans-serif;
+    latter-spacing: 0.5px;
+}
+
+body{
+    background-color: #f5826e;
+}
+
+.engvocabulary-table{
+    border-collapse: collapse;
+    width:60em;
+    background-color:#ffff;
+    border-radius: 5px;
+    box-shadow: 0px 10px 30px 10px rgba(0,0,0,.15);
+    margin: 20px auto;
+}
+
+/*.engvocabulary-table thead tr{*/
+/*                                    !*border-bottom: 1px dotted grey;*!*/
+/*}*/
+
+.engvocabulary-table thead tr td{
+    font-size:12px;
+    letter-spacing: 1px;
+    color:grey;
+    padding: 2px;
+    border-bottom: 1px dotted grey;
+    border-right: 1px dotted grey;
+    text-align: center;
+    vertical-align: top;
+}
+
+
+
+.engvocabulary-table thead tr td:nth-last-child(1){
+    border-right: none;
+}
+
+.engvocabulary-table thead tr .td1{
+    width:2em;
+}
+
+.engvocabulary-table tbody tr{
+    border-bottom: 1px dotted grey;
+
+}
+.engvocabulary-table tbody td{
+    text-align: center;
+    vertical-align: middle;
+    border-right: 1px dotted grey;
+}
+.engvocabulary-table tbody td:nth-last-child(1){
+    border-right: none;
+}
+
+form {
+    display: inline-block;
+}
+
+
+
+
+
+

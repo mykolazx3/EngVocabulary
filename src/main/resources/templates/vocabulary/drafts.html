@@ -1,0 +1,101 @@
+<table class="editForm">
+    <tr>
+        <td>
+            <form th:method="PATCH" th:action="@{/vocabulary/{id}/edit-word(id=${wordsRowToEdit.getId()})}"
+                  th:object="${wordsRowToEdit}">
+
+
+
+
+
+
+
+                <div th:unless="${type == 'nounPronoun'}">
+                    <input type="hidden" th:field="*{nounPronoun}"/>
+                    <input type="hidden" th:field="*{nounPronounTranslate}"/>
+                </div>
+                <div th:unless="${type == 'gerund'}">
+                    <input type="hidden" th:field="*{gerund}"/>
+                    <input type="hidden" th:field="*{gerundTranslate}"/>
+                </div>
+                <div th:unless="${type == 'adjective'}">
+                    <input type="hidden" th:field="*{adjective}"/>
+                    <input type="hidden" th:field="*{adjectiveTranslate}"/>
+                </div>
+                <div th:unless="${type == 'adverbPrepositionConjunction'}">
+                    <input type="hidden" th:field="*{adverbPrepositionConjunction}"/>
+                    <input type="hidden" th:field="*{adverbPrepositionConjunctionTranslate}"/>
+                </div>
+                <div th:unless="${type == 'infinitive'}">
+                    <input type="hidden" th:field="*{infinitive}"/>
+                    <input type="hidden" th:field="*{infinitiveTranslate}"/>
+                </div>
+                <div th:unless="${type == 'pastSimple'}">
+                    <input type="hidden" th:field="*{pastSimple}"/>
+                    <input type="hidden" th:field="*{pastSimpleTranslate}"/>
+                </div>
+                <div th:unless="${type == 'participle2'}">
+                    <input type="hidden" th:field="*{participle2}"/>
+                    <input type="hidden" th:field="*{participle2Translate}"/>
+                </div>
+                <div th:unless="${type == 'participle1'}">
+                    <input type="hidden" th:field="*{participle1}"/>
+                    <input type="hidden" th:field="*{participle1Translate}"/>
+                </div>
+
+                <div th:if="${type == 'nounPronoun'}">
+                    <input type="text" th:field="*{nounPronoun}"/>
+                    <br/>
+                    <input type="text" th:field="*{nounPronounTranslate}"/>
+                </div>
+                <div th:if="${type == 'gerund'}">
+                    <input type="text" th:field="*{gerund}"/>
+                    <br/>
+                    <input type="text" th:field="*{gerundTranslate}"/>
+                </div>
+                <div th:if="${type == 'adjective'}">
+                    <input type="text" th:field="*{adjective}"/>
+                    <br/>
+                    <input type="text" th:field="*{adjectiveTranslate}"/>
+                </div>
+                <div th:if="${type == 'adverbPrepositionConjunction'}">
+                    <input type="text" th:field="*{adverbPrepositionConjunction}"/>
+                    <br/>
+                    <input type="text" th:field="*{adverbPrepositionConjunctionTranslate}"/>
+                </div>
+                <div th:if="${type == 'infinitive'}">
+                    <input type="text" th:field="*{infinitive}"/>
+                    <br/>
+                    <input type="text" th:field="*{infinitiveTranslate}"/>
+                </div>
+                <dif th:if="${type == 'pastSimple'}">
+                    <input type="text" th:field="*{pastSimple}"/>
+                    <br/>
+                    <input type="text" th:field="*{pastSimpleTranslate}"/>
+                </dif>
+                <div th:if="${type == 'participle2'}">
+                    <input type="text" th:field="*{participle2}"/>
+                    <br/>
+                    <input type="text" th:field="*{participle2Translate}"/>
+                </div>
+                <div th:if="${type == 'participle1'}">
+                    <input type="text" th:field="*{participle1}"/>
+                    <br/>
+                    <input type="text" th:field="*{participle1Translate}"/>
+                </div>
+                <br/>
+
+
+
+
+
+
+
+
+
+
+                <input type="submit" value="Edit"/>
+            </form>
+        </td>
+    </tr>
+</table>
